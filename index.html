@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elect Robert Roussel – SJBP School Board District 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:       rgb(53, 78, 63);
+      --cream:       rgb(245, 242, 234);
+      --red:         #b02020;
+      --green-light: rgba(53, 78, 63, 0.07);
+      --green-mid:   rgba(53, 78, 63, 0.18);
+      --display:     'Playfair Display', Georgia, serif;
+      --body:        'Source Serif 4', Georgia, serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--green);
+      font-family: var(--body);
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .header-name {
+      font-family: 'Merriweather', serif; font-weight: 600;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--cream);
+      border-bottom: 2px solid var(--green);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 2rem; gap: 1rem;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-family: var(--display); font-weight: 700;
+      font-size: 1rem; line-height: 1.2;
+    }
+    .nav-apple {
+        width: clamp(1.3rem, 2.6vw, 1.9rem);
+        height: clamp(1.3rem, 2.6vw, 1.9rem);
+    }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links a {
+      font-size: 0.82rem; letter-spacing: 0.08em;
+      text-transform: uppercase; font-weight: 600;
+      opacity: 0.7; transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta {
+      background: var(--green); color: var(--cream) !important;
+      opacity: 1 !important; padding: 0.35rem 1rem; border-radius: 2px;
+    }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--green); transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* HERO */
+    /*#hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 92vh; border-bottom: 2px solid var(--green);
+      overflow: hidden;
+    }*/
+    #hero {
+      min-height: 92vh; border-bottom: 2px solid var(--green);
+      overflow: hidden;
+    }
+    .elect-check {
+        width: 3rem;
+    }
+    .hero-text {
+      padding: 5rem 4rem 5rem 5vw;
+      animation: fadeUp 0.9s ease both;
+    }
+    .apple-name {
+        width: clamp(1.7rem, 3.7vw, 3.4rem);
+        height: clamp(1.7rem, 3.7vw, 3.4rem);
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; letter-spacing: 0.15em;
+      text-transform: uppercase; font-weight: 600;
+      opacity: 0.55; margin-bottom: 1.2rem;
+    }
+    .eyebrow::before {
+      content: ''; display: inline-block;
+      width: 26px; height: 2px; background: var(--red);
+    }
+    h1 {
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(3.2rem, 7vw, 6.5rem);
+      line-height: 0.93; letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+    .election-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      justify-content: end;
+      align-items: center;
+    }
+    .election-container > div:first-child {
+      display: flex;
+      justify-content: right;
+    }
+    .date {
+      font-size: clamp(1rem, 3.5vw, 3.2rem);
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      opacity: 0.60;
+      text-align: center;
+    }
+    .first {
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end; /* keeps it right-aligned like before */
+      gap: 0.4rem;
+      font-weight: 600;
+      font-size: .5em;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.15em;
+    }
+    .second { display: block; font-family: 'Merriweather', serif; font-weight: 600; font-size: .9em; letter-spacing: 0.02em; margin-bottom: 0.15em; }
+    .apple-r { color: var(--red); }
+    .hero-district {
+      font-size: 0.82rem; letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 600;
+      opacity: 0.55; margin-bottom: 2rem;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-style: italic; font-weight: 300;
+      max-width: 38ch; margin-bottom: 2.5rem; line-height: 1.65;
+      list-style: 0.2;
+    }
+    .btn-primary {
+      display: inline-block; background: var(--green); color: var(--cream);
+      padding: 0.85rem 2.2rem; font-family: var(--body);
+      font-size: 0.84rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; border: 2px solid var(--green);
+      transition: background 0.2s, color 0.2s;
+      margin-right: 0.75rem; margin-bottom: 0.75rem; cursor: pointer;
+    }
+    .btn-primary:hover { background: transparent; color: var(--green); }
+    .btn-outline {
+      display: inline-block; background: transparent; color: var(--green);
+      padding: 0.85rem 2.2rem; font-family: var(--body);
+      font-size: 0.84rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; border: 2px solid var(--green);
+      transition: background 0.2s, color 0.2s;
+      margin-bottom: 0.75rem; cursor: pointer;
+    }
+    .btn-outline:hover { background: var(--green); color: var(--cream); }
+
+    .hero-panel {
+      background: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      padding: 4rem 3rem; position: relative; overflow: hidden;
+      animation: fadeIn 1.2s ease both;
+    }
+    .hero-panel::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(176,32,32,0.18) 0%, transparent 60%);
+    }
+    .hero-badge { text-align: center; color: var(--cream); position: relative; }
+    .here-panel-pic {
+        height: 32rem;
+    }
+    .hero-badge .name-label {
+      font-family: var(--display); font-size: 1rem; font-weight: 700;
+    }
+    .hero-badge .sub-label {
+      font-size: 0.72rem; opacity: 0.5;
+      letter-spacing: 0.14em; text-transform: uppercase; margin-top: 0.3rem;
+    }
+    .hero-quote {
+        font-size: 2em;
+    }
+    .bullet-points {
+        display: block;
+        font-size: .6em;
+        text-align: left;
+    }
+
+    /* SECTIONS */
+    section { padding: 6rem 5vw; border-bottom: 2px solid var(--green); }
+    .sec-label {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.76rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 600;
+      opacity: 0.48; margin-bottom: 0.8rem;
+    }
+    .sec-label::before { content: ''; display: inline-block; width: 22px; height: 2px; background: var(--red); }
+    h2 {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      line-height: 1.1; margin-bottom: 2rem;
+    }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; }
+    #image1 { width: 100%; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2.5rem; }
+    .stat { border: 2px solid var(--green-mid); padding: 1.1rem 1rem; }
+    .stat-n { font-family: var(--display); font-weight: 900; font-size: 2.4rem; line-height: 1; }
+    .stat-l { font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5; margin-top: 0.25rem; }
+
+    /* PRIORITIES */
+    #priorities { background: var(--green); color: var(--cream); }
+    #priorities .sec-label { opacity: 0.45; }
+    #priorities .sec-label::before { background: var(--red); }
+    #priorities h2 { color: var(--cream); margin-bottom: 3rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .p-card {
+      border: 2px solid rgba(245,242,234,0.18);
+      padding: 2rem 1.6rem;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .p-card:hover { border-color: rgba(245,242,234,0.5); background: rgba(245,242,234,0.05); }
+    .p-num { font-family: var(--display); font-size: 3.8rem; font-weight: 900; opacity: 0.1; line-height: 1; margin-bottom: -0.9rem; }
+    .p-icon { font-size: 1.9rem; margin-bottom: 0.7rem; }
+    .p-title { font-family: var(--display); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.65rem; }
+    .p-desc { font-size: 0.92rem; opacity: 0.72; line-height: 1.65; }
+
+    /* VALUES */
+    .values-flex { display: flex; gap: 4rem; flex-wrap: wrap; align-items: flex-start; }
+    .values-intro { flex: 1 1 300px; }
+    .values-list { flex: 2 1 380px; }
+    .v-item {
+      display: grid; grid-template-columns: 2.2rem 1fr;
+      gap: 0.9rem; align-items: start;
+      padding: 1.3rem 0; border-bottom: 1px solid var(--green-mid);
+    }
+    .v-item:first-child { border-top: 1px solid var(--green-mid); }
+    .v-num { font-family: var(--display); font-weight: 700; font-size: 1rem; opacity: 0.28; padding-top: 0.15rem; }
+    .v-title { font-family: var(--display); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem; }
+    .v-text { font-size: 0.9rem; opacity: 0.68; }
+
+    /* ENDORSEMENTS */
+    #endorsements { background: var(--green); color: var(--cream); }
+    #endorsements .sec-label { opacity: 0.45; }
+    #endorsements .sec-label::before { background: var(--red); }
+    #endorsements h2 { color: var(--cream); margin-bottom: 3rem; }
+    #endorsements h2 { margin-bottom: 3rem; }
+    .e-card { background: rgba(245,242,234,0.08); border: 2px solid rgba(245,242,234,0.18); color: var(--cream); }
+    .q-mark { font-family: var(--display); font-size: 4.5rem; line-height: 0.5; color: var(--red); opacity: 0.28; margin-bottom: 0.8rem; }
+    .e-text { margin: 1rem; font-style: italic; font-size: 0.97rem; line-height: 1.65; margin-bottom: 1.1rem; }
+    .e-name { margin: 1rem; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.04em; }
+    .e-role { margin: 1rem; font-size: 0.76rem; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* INVOLVED */
+    #involved h2 { margin-bottom: 3rem; }
+    .involve-card { border-left: 3px solid var(--red); padding-left: 1.5rem; }
+    .inv-icon { width: 10rem; font-size: 1.9rem; margin-bottom: 0.7rem; }
+    .inv-title { font-family: var(--display); font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .inv-text { font-size: 0.9rem; opacity: 0.68; margin-bottom: 1.2rem; }
+
+    /* CONTACT */
+    #contact { background: var(--green); color: var(--cream); text-align: center; }
+    #contact .sec-label { justify-content: center; opacity: 0.45; }
+    #contact h2 { color: var(--cream); }
+    #contact > p { max-width: 50ch; margin: 0 auto 2.5rem; opacity: 0.72; }
+    .cform {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; max-width: 620px; margin: 0 auto 2rem; text-align: left;
+    }
+    .cform .full { grid-column: 1/-1; }
+    .cform input, .cform textarea, .cform select {
+      width: 100%; background: rgba(245,242,234,0.1);
+      border: 2px solid rgba(245,242,234,0.28);
+      color: var(--cream); font-family: var(--body);
+      font-size: 0.93rem; padding: 0.75rem 1rem;
+      outline: none; transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .cform input::placeholder, .cform textarea::placeholder { opacity: 0.38; color: var(--cream); }
+    .cform input:focus, .cform textarea:focus { border-color: rgba(245,242,234,0.65); }
+    .cform textarea { resize: vertical; min-height: 95px; }
+    .cform option { color: #333; background: #fff; }
+    .btn-cream {
+      display: inline-block; background: var(--cream); color: var(--green);
+      padding: 0.85rem 2.4rem; font-family: var(--body);
+      font-size: 0.84rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; border: 2px solid var(--cream);
+      transition: background 0.2s, color 0.2s; cursor: pointer;
+    }
+    .btn-cream:hover { background: transparent; color: var(--cream); }
+    .form-note { font-size: 0.75rem; opacity: 0.4; margin-top: 0.8rem; }
+    .donate-sec {
+      margin-top: 4rem; padding-top: 3rem;
+      border-top: 2px solid rgba(245,242,234,0.18);
+    }
+    .donate-sec h3 { font-family: var(--display); font-size: 1.7rem; margin-bottom: 0.6rem; }
+    .donate-sec p { opacity: 0.65; font-size: 0.92rem; max-width: 46ch; margin: 0 auto 1.4rem; }
+    .donate-amounts { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.6rem; }
+    .d-btn {
+      border: 2px solid rgba(245,242,234,0.35); background: transparent;
+      color: var(--cream); padding: 0.65rem 1.4rem;
+      font-family: var(--display); font-weight: 700;
+      font-size: 1.05rem; cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .d-btn:hover, .d-btn.active { background: rgba(245,242,234,0.12); border-color: var(--cream); }
+
+    /* FOOTER */
+    footer {
+      padding: 2.2rem 5vw;
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .f-logo {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(0.75rem, 1.5vw, 1.1rem);
+    }
+    .footer-apple {
+        width: clamp(0.75rem, 1.5vw, 1.1rem);
+    }
+    .f-legal { font-size: 0.73rem; opacity: 0.42; max-width: 55ch; text-align: right; line-height: 1.5; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+    .reveal { opacity:0; transform:translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none; width: 100%; flex-direction: column;
+        gap: 0; padding: 0.4rem 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-top: 1px solid var(--green-mid); }
+      .nav-links a { display: block; padding: 0.6rem 0.2rem; }
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-text { padding: 3.5rem 5vw 2.5rem; }
+      .hero-panel { min-height: 46vh; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .photo-placeholder { aspect-ratio: 3/2; }
+      .grid-3 { grid-template-columns: 1fr; }
+      #involved .grid-3 { grid-template-columns: 1fr; }
+      .cform { grid-template-columns: 1fr; }
+      .cform .full { grid-column: 1; }
+      .f-legal { text-align: left; }
+      footer { flex-direction: column; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 5vw; }
+      h2 { font-size: 1.9rem; }
+      h1 { font-size: 3.2rem; }
+      .stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span style="color:var(--red); font-size:1.4rem;">
+        <img src="./apple.png" class="nav-apple"></span>
+    <span class="header-name">Robert<br>Roussel</span>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#priorities">Priorities</a></li>
+    <li><a href="#values">Values</a></li>
+    <li><a href="#endorsements">Endorsements</a></li>
+    <li><a href="#involved">Get Involved</a></li>
+    <li><a href="#contact" class="nav-cta">Donate</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="padding:0;">
+  <div class="hero-text">
+    <div class="eyebrow">SJBP School Board · District 2 · 2026 Election</div>
+      <h1><div class="election-container">
+        <div><span class="date">NOV 3rd 2026</span></div>
+        <div><span class="first"><img src="./check.png" class="elect-check">Elect</span></div>
+      </div>
+        <span class="second">Robert
+        <br>
+        R<span class="apple-r"><img src="./apple.png" class="apple-name"></span>ussel
+        </span></h1>
+    <div class="hero-district">St. John the Baptist Parish School Board — District 2</div>
+    <a href="#priorities" class="btn-primary">See My Plan</a>
+    <a href="#contact" class="btn-outline">Support the Campaign</a>
+    </div>
+    <div class="hero-panel">
+        <div class="hero-badge">
+            <div class="hero-quote">
+                    <span class="bullet-points">&#10003; Father to SJBP Students</span>
+                    <span class="bullet-points">&#10003; Husband to SJBP Teacher</span>
+                    <span class="bullet-points">&#215;&nbsp; Politcian</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="photo-placeholder">
+      <img src="./image1.jpeg" id="image1">
+    </div>
+    <div class="reveal">
+      <div class="sec-label">About Robert</div>
+      <h2>My Kids Learn Here, My Wife Teaches Here, We Feel <u>EVERY</u> Decision Made</h2>
+      <p>Robert Roussel has called St. John the Baptist Parish home since 2014. As the Father of three SJPB students, the husband of a teacher, and a local church pastor, Robert has seen firsthand what our schools do well — and where they need stronger support.</p>
+      <br>
+      <p>Robert believes school board members must be <u>present</u>, <u>invested</u>, and <u>relateable</u>. He's a resident of Garyville, the father of three children who attend St. John the Baptist Parish Schools, the husband of a St. John the Baptist Parish Teacher, and someone who hears the perspectives of students and teachers - the most important elemnts of our Public School system.</p>
+      <br>
+      <p>Robert has continued to serve as Pastor of First Baptist Church of Reserve since 2014 and as a Port Chaplain since 2016. Between the relationships with people in the community and the perspective gained in his expereince, Robert understands the <u>challenges</u> and the <u>needs</u>.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-n">12+</div><div class="stat-l">Years in the Community</div></div>
+        <div class="stat"><div class="stat-n">3</div><div class="stat-l">Children in SJBP Schools</div></div>
+        <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Invested in St. John Parish</div></div>
+        <div class="stat"><div class="stat-n">$0</div><div class="stat-l">Outside Special Interests</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIORITIES -->
+<section id="priorities">
+  <div class="sec-label">Platform</div>
+  <h2>What I Will Fight For</h2>
+  <div class="grid-3">
+    <div class="p-card reveal">
+      <div class="p-num">01</div>
+      <br>
+      <div class="p-title">Students</div>
+      <p class="p-desc">Our schools should be a place where every kid feels wanted, their needs met, and they're given the opportunity to thrive.</p>
+    </div>
+    <div class="p-card reveal">
+      <div class="p-num">02</div>
+      <br>
+      <div class="p-title">Teachers</div>
+      <p class="p-desc">If we want our kids to succeed, we need to give teachers the time, tools, and respect they deserve.</p>
+    </div>
+    <div class="p-card reveal">
+      <div class="p-num">03</div>
+      <br>
+      <div class="p-title">Improving the Culture Within Our Schools</div>
+      <p class="p-desc">Our schools need to model, <b><u>"Treat other people the way you want to be treated."</u></b> &mdash; a positive-culture where hard work is rewarded will benefit everyone in our communities, from parents to staff.</p>
+    </div>
+    <div class="p-card reveal">
+      <div class="p-num">04</div>
+      <br>
+      <div class="p-title">A Dependable Board</div>
+      <p class="p-desc">Our schools face real problems &mdash; our leadership faces tough decisions. I beleive our community deserves honest, trustworthy, and dependable board action. <u><b>It's time for the board to earn our trust.</b></u></p>
+    </div>
+    <div class="p-card reveal">
+      <div class="p-num">05</div>
+      <br>
+      <div class="p-title">Parent &amp; Community Voice</div>
+      <p class="p-desc">As a parent, I undstand what it's like to want your voice to be heard. I will continue to push for stronger focus on community feedback and <b><u>decisions that reflect it.</u></b></p>
+    </div>
+    <div class="p-card reveal">
+      <div class="p-num">06</div>
+      <br>
+      <div class="p-title">Long Term Plans for Community Growth</div>
+      <p class="p-desc">St. John the Baptist Parish is here to stay. It's time we start planning like it. With the completion of the West Shore Lake Ponchartrain (levee) Project, I see our school system as the number one challenge in the future growth of our parish.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="values-flex">
+    <div class="values-intro reveal">
+      <div class="sec-label">Core Beliefs</div>
+      <h2>The Values That Guide Me</h2>
+      <p>"<i><b>It's not hard to make decisions when you know what your values are.</b></i>" &mdash; Roy Disney<br><br>  Likewise, its easier to trust leaders who's values you know. These are the values that lead my interactions now with our school system and what will guide my decisions if elected.</p>
+    </div>
+    <div class="values-list reveal">
+      <div class="v-item">
+        <div class="v-num">01</div>
+        <div><div class="v-title">Representation</div><div class="v-text">Our students and teachers need representation by people who feel the problems firsthand.</div></div>
+      </div>
+      <div class="v-item">
+        <div class="v-num">02</div>
+        <div><div class="v-title">Fairness</div><div class="v-text">Every child deserves the same opportunities, regardless of zip code, background, or ability.</div></div>
+      </div>
+      <div class="v-item">
+        <div class="v-num">03</div>
+        <div><div class="v-title">Healthy Schools</div><div class="v-text">Our schools need to be student first, teachers second, administration last.</div></div>
+      </div>
+      <div class="v-item">
+        <div class="v-num">04</div>
+        <div><div class="v-title">Optimism</div><div class="v-text">We have tremendous potential within our Parish and it starts within our schools.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENDORSEMENTS -->
+<section id="endorsements">
+  <div class="sec-label">Endorsements</div>
+  <h2>Trusted by Our Community</h2>
+  <div class="grid-3">
+    <div class="e-card reveal">
+      <p class="e-text">Robert has shown up for this community long before he decided to run for office. He's the kind of neighbor who genuinely cares, and that's exactly who we need on our school board.</p>
+      <div class="e-name">Jane D. Williams</div>
+      <div class="e-role">Retired SJBP Educator · 30 Years</div>
+    </div>
+    <div class="e-card reveal">
+      <p class="e-text">As a parent of three kids in District 2, I've watched Robert fight for things that actually matter to families. He listens, he follows up, and he gets things done.</p>
+      <div class="e-name">Marcus T. Johnson</div>
+      <div class="e-role">District 2 Parent &amp; PTO President</div>
+    </div>
+    <div class="e-card reveal">
+      <p class="e-text">Robert Roussel understands that a strong school system is the foundation of a strong community. He has my full support and confidence.</p>
+      <div class="e-name">Patricia Fontenot</div>
+      <div class="e-role">Local Business Owner &amp; Chamber Member</div>
+    </div>
+  </div>
+</section>
+
+<!-- GET INVOLVED -->
+<section id="involved">
+  <div class="sec-label">Take Action</div>
+  <h2>Get Involved Today</h2>
+  <div class="involve-card reveal">
+  <img src="./vote2.png" class="inv-icon">
+  <div class="inv-title">Vote on Election Day</div>
+  <p class="inv-text">Make sure you're registered and ready to vote. Every ballot counts in local elections — your vote is the single most powerful thing you can do for our children.</p>
+  <a href="https://voterportal.sos.la.gov" target="_blank" rel="noopener" class="btn-outline" style="font-size:0.8rem; padding:0.55rem 1.3rem;">Check Registration →</a>
+</div>
+<div class="involve-card reveal">
+  <img src="./spread1.png" class="inv-icon">
+  <div class="inv-title">Spread the Word</div>
+  <p class="inv-text">Talk to your neighbors, share this website, and put a yard sign in your yard. Word-of-mouth is the most powerful campaign tool there is — and it costs nothing.</p>
+  <a href="mailto:info@robertrousselforschoolboard.com?subject=Yard%20Sign%20Request&body=I%20would%20like%20to%20support%20by%20displaying%20a%20yard%20sign!" class="btn-outline" style="font-size:0.8rem; padding:0.55rem 1.3rem;">Request a Sign →</a>
+</div>
+<div class="involve-card reveal">
+  <img src="./volunteer2.png" class="inv-icon">
+  <div class="inv-title">Volunteer</div>
+  <p class="inv-text">We need volunteers! A few hours of your time makes a real difference. No experience needed — just a passion for our community.</p>
+  <a href="mailto:info@robertrousselforschoolboard.com?subject=I%20Would%20Like%20to%20Help!&body=Please%20tell%20me%20how%20I%20can%20help%20in%20this%20campaign!" class="btn-outline" style="font-size:0.8rem; padding:0.55rem 1.3rem;">Sign Up →</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo"><span style="color:var(--red)"><img src="apple.png" class="footer-apple"></span> Robert Roussel · SJBP District 2</div>
+  <div class="f-legal">
+    Paid for by Robert Roussel for SJBP School Board District 2. Not authorized by any candidate's committee.
+    &nbsp;·&nbsp; <a href="mailto:info@robertrousselforschoolboard.com" style="opacity:0.7;">info@robertrousselforschoolboard.com</a>
+  </div>
+</footer>
+
+<script>
+  // Hamburger
+  const hbg = document.getElementById('hamburger');
+  const nl  = document.getElementById('nav-links');
+  hbg.addEventListener('click', () => { hbg.classList.toggle('open'); nl.classList.toggle('open'); });
+  nl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hbg.classList.remove('open'); nl.classList.remove('open'); }));
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 75);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Donate pick
+  function pick(btn) {
+    document.querySelectorAll('.d-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Form submit
+  function handleForm() {
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = "Thank you! We'll be in touch soon.";
+    btn.style.opacity = '0.6';
+    btn.style.cursor = 'default';
+    btn.onclick = null;
+  }
+</script>
+</body>
+</html>
