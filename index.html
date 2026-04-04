@@ -84,9 +84,6 @@
       min-height: 92vh; border-bottom: 2px solid var(--green);
       overflow: hidden;
     }
-    .elect-check {
-        width: 3rem;
-    }
     .hero-text {
       padding: 5rem 4rem 5rem 5vw;
       animation: fadeUp 0.9s ease both;
@@ -97,9 +94,9 @@
     }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.78rem; letter-spacing: 0.15em;
+      font-size: 1,2rem; letter-spacing: 0.15em;
       text-transform: uppercase; font-weight: 600;
-      opacity: 0.55; margin-bottom: 1.2rem;
+      opacity: 0.75; margin-bottom: 1.2rem;
     }
     .eyebrow::before {
       content: ''; display: inline-block;
@@ -111,35 +108,41 @@
       line-height: 0.93; letter-spacing: -0.01em;
       margin-bottom: 1rem;
     }
-    .election-container {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      justify-content: end;
-      align-items: center;
-    }
-    .election-container > div:first-child {
-      display: flex;
-      justify-content: right;
-    }
     .date {
+      display: flex;
+      justify-content: center;
       font-size: clamp(1rem, 3.5vw, 3.2rem);
       letter-spacing: 0.15em;
       font-weight: 600;
-      opacity: 0.60;
+      opacity: 0.6;
       text-align: center;
+      margin-bottom: 1rem;
     }
-    .first {
-      text-align: right;
+    .check-container {
+      margin-left: 13.2rem;
+      text-align: left;
       display: flex;
       align-items: center;
-      justify-content: flex-end; /* keeps it right-aligned like before */
       gap: 0.4rem;
       font-weight: 600;
-      font-size: .5em;
+      font-size: .40em;
+      letter-spacing: 0.02em;
+      margin-bottom: -1rem;
+    }
+    .elect-check { /* Image class itself */
+        width: 3rem;
+    }
+    .name {
+      display: block;
+      font-family: 'Merriweather', serif;
+      font-weight: 600;
+      font-size: .9em;
       letter-spacing: 0.02em;
       margin-bottom: 0.15em;
     }
-    .second { display: block; font-family: 'Merriweather', serif; font-weight: 600; font-size: .9em; letter-spacing: 0.02em; margin-bottom: 0.15em; }
+    #first-name {
+      font-size: .45em;
+    }
     .apple-r { color: var(--red); }
     .hero-district {
       font-size: 0.82rem; letter-spacing: 0.12em;
@@ -389,7 +392,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#priorities">Priorities</a></li>
     <li><a href="#values">Values</a></li>
-    <li><a href="#endorsements">Endorsements</a></li>
+    <!--li><a href="#endorsements">Endorsements</a></li-->
     <li><a href="#involved">Get Involved</a></li>
     <li><a href="#contact" class="nav-cta">Donate</a></li>
   </ul>
@@ -398,12 +401,14 @@
 <!-- HERO -->
 <section id="hero" style="padding:0;">
   <div class="hero-text">
-    <div class="eyebrow">SJBP School Board · District 2 · 2026 Election</div>
-      <h1><div class="election-container">
-        <div><span class="date">NOV 3rd 2026</span></div>
-        <div><span class="first"><img src="./check.png" class="elect-check">Elect</span></div>
-      </div>
-        <span class="second">Robert
+    <div class="eyebrow">SJBP School Board · District 2</div>
+
+    <div class="date">November 2026 Election</div>
+
+      <h1>
+        <span class="check-container"><img src="./check.png" class="elect-check">Elect</span>
+        <span class="name">
+        <span id="first-name">Robert</span>
         <br>
         R<span class="apple-r"><img src="./apple.png" class="apple-name"></span>ussel
         </span></h1>
@@ -520,8 +525,8 @@
 </section>
 
 <!-- ENDORSEMENTS -->
-<section id="endorsements">
-  <div class="sec-label">Endorsements</div>
+<!--section id="endorsements">
+  div class="sec-label">Endorsements</div>
   <h2>Trusted by Our Community</h2>
   <div class="grid-3">
     <div class="e-card reveal">
@@ -540,7 +545,7 @@
       <div class="e-role">Local Business Owner</div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- ENDORSEMENTS 
 <section id="endorsements">
